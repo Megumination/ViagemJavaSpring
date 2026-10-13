@@ -2,22 +2,27 @@ package com.viagem.cadastro_viagem.controller;
 
 import com.viagem.cadastro_viagem.business.ViagemService;
 import com.viagem.cadastro_viagem.infrastructure.entitys.Viagem;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/viagem")
-@RequiredArgsConstructor
+@RequestMapping("/viagem" )
 public class ViagemController {
 
     private final ViagemService viagemService;
 
+    public ViagemController(ViagemService viagemService) {
+        this.viagemService = viagemService;
+    }
+
     @PostMapping
     public ResponseEntity<Viagem> salvarViagem(@RequestBody Viagem viagem) {
-        return ResponseEntity.ok(viagemService.salvarViagem(viagem));
+        Viagem viagemCriada = viagemService.salvarViagem(viagem);
+        URI endereco = URI.create("/viagem/" + viagemCriada.getId());
+        return ResponseEntity.created(endereco).body(viagemCriada);
     }
 
     @GetMapping
@@ -41,7 +46,9 @@ public class ViagemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Viagem> atualizarViagem(@PathVariable Integer id, @RequestBody Viagem viagem) {
+    public ResponseEntity<Viagem> atualizarViagem(
+            @PathVariable Integer id,
+            @RequestBody Viagem viagem) {
         return ResponseEntity.ok(viagemService.atualizarViagemPorId(id, viagem));
     }
 
