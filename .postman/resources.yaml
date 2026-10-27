@@ -2,6 +2,10 @@
 workspace:
   id: b8d87e4d-b7c0-4dd6-8158-28bc2a10734a
 
+cloudResources:
+  collections:
+    ../postman/collections/CRUD de Viagens - PostgreSQL: 9f16edaf-03d7-4e51-a8a0-fb5341b639d3
+
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:
 #localResources:

@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/viagem/{{viagemId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "destino": "Rio de Janeiro, RJ",
+      "dataIda": "2026-12-10",
+      "dataVolta": "2026-12-15",
+      "preco": 1999.90,
+      "observacoes": "Atualizada pelo teste Postman"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Atualização concluída', function () { pm.response.to.have.status(200); });
+      pm.test('Preço foi atualizado', function () { pm.expect(pm.response.json().preco).to.eql(1999.9); });
+    language: text/javascript
+order: 3000

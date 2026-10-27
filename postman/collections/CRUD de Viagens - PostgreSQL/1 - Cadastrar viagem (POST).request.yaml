@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/viagem"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "destino": "Rio de Janeiro, RJ",
+      "dataIda": "2026-12-10",
+      "dataVolta": "2026-12-15",
+      "preco": 1850.50,
+      "observacoes": "Criada pelo teste Postman"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Cadastro concluído', function () { pm.expect(pm.response.code).to.be.oneOf([200, 201]); });
+      const viagem = pm.response.json();
+      pm.expect(viagem.id).to.exist;
+      pm.collectionVariables.set('viagemId', viagem.id);
+    language: text/javascript
+order: 1000

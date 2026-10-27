@@ -45,15 +45,15 @@ public class ViagemController {
         return ResponseEntity.ok(viagemService.pesquisarPorDestino(destino));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Viagem> atualizarViagem(
-            @PathVariable Integer id,
+            @RequestParam Integer id,
             @RequestBody Viagem viagem) {
         return ResponseEntity.ok(viagemService.atualizarViagemPorId(id, viagem));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarViagem(@PathVariable Integer id) {
+    @DeleteMapping
+    public ResponseEntity<Void> deletarViagem(@RequestParam Integer id) {
         viagemService.deletarViagemPorId(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,0 +1,5 @@
+$kind: collection
+description: Demonstração sequencial das operações POST, GET, PUT e DELETE do cadastro de viagens. Requer a API em http://localhost:8081 e o PostgreSQL configurado.
+variables:
+  baseUrl: http://localhost:8081
+  viagemId: ""
