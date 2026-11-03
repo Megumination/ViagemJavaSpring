@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class )
+    @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> tratarDadosInvalidos(IllegalArgumentException erro) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

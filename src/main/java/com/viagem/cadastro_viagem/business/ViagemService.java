@@ -113,4 +113,10 @@ public class ViagemService {
             throw new IllegalArgumentException("O destino é obrigatório.");
         }
     }
+
+    public Viagem atualizarViagemPorDestino(String destino, Viagem viagem) {
+        Viagem encontrada = buscarViagemPorDestino(destino);
+        return atualizarViagemPorId(encontrada.getId(), viagem);
+    }
+
 }
